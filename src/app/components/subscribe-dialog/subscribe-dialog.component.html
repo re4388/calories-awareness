@@ -1,0 +1,29 @@
+<h3 mat-dialog-title>
+  Get Reminder Everyday by email
+</h3>
+<div mat-dialog-actions>
+  <div class="container">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your email</mat-label>
+      <input
+        matInput
+        [formControl]="emailForm"
+        required
+      />
+      <mat-error
+      *ngIf="emailForm.invalid">
+      {{ getErrorMessage() }}
+    </mat-error>
+    </mat-form-field>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <button color="primary"
+  mat-raised-button
+  [mat-dialog-close]="true"
+  (click)="SubscribeDailyReminder()"
+  >
+    Sign up
+  </button>
+</div>

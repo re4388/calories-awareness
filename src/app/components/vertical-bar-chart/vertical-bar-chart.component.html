@@ -1,0 +1,29 @@
+<!-- TODO: not working for now, check later -->
+<!-- <ng-container *ngIf="firebaseDataMerged === null">
+  <mat-spinner></mat-spinner>
+</ng-container> -->
+
+<div class="chart-container">
+  <!-- https://swimlane.gitbook.io/ngx-charts/examples/bar-charts/vertical-bar-chart -->
+  <ngx-charts-bar-vertical
+  [view]="view"
+  [results]="firebaseDataMerged"
+  [scheme]="colorScheme"
+  [gradient]="gradient"
+  [xAxis]="showXAxis"
+  [yAxis]="showYAxis"
+  [legend]="showLegend"
+  [showDataLabel]="showDataLabel"
+  [showXAxisLabel]="showXAxisLabel"
+  [showGridLines] ="showGridLines"
+  [showYAxisLabel]="showYAxisLabel"
+  [xAxisLabel]="xAxisLabel"
+  [yAxisLabel]="yAxisLabel"
+  (select)="onSelect($event)"
+  >
+  </ngx-charts-bar-vertical>
+
+
+  <!-- <button (click)="getData()">XXXX</button> -->
+</div>
+

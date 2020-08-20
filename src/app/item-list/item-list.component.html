@@ -1,0 +1,41 @@
+<table>
+  <thead>
+    <tr>
+      <th>Order No.</th>
+      <th>Name</th>
+      <th>Coffee List</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let order of coffeeOrders">
+      <td [hidden]="order.payload.doc.data().completed">
+        {{ order.payload.doc.data().orderNumber }}
+      </td>
+      <td [hidden]="order.payload.doc.data().completed">
+        {{ order.payload.doc.data().customerName }}
+      </td>
+      <td [hidden]="order.payload.doc.data().completed">
+        <span *ngFor="let coffee of order.payload.doc.data().coffeeOrder">
+          {{ coffee }}
+        </span>
+      </td>
+      <td
+        [hidden]="order.payload.doc.data().completed"
+        (click)="markCompleted(order)"
+      >
+        <i class="material-icons">check</i>
+      </td>
+      <td
+        [hidden]="order.payload.doc.data().completed"
+        (click)="deleteOrder(order)"
+      >
+        <i class="material-icons">delete_forever</i>
+      </td>
+      <td [hidden]="true">
+        test
+        <i class="material-icons">delete_forever</i>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,58 @@
+html {
+  background-color: #F9F9F9;
+}
+
+.logo-text {
+  padding-top: 40px;
+}
+
+
+.text-center {
+  text-align: center;
+}
+
+p {
+  font-family: Lato;
+}
+
+.card-content {
+  display:inline-block;
+  max-width: 400px;
+  text-align:center;
+  padding: 40px;
+}
+
+.mat-form-field {
+  width: 320px!important;
+  padding: 2px;
+  margin: 5px;
+}
+.mat-raised-button {
+  width: 320px!important;
+  padding: 2px;
+  margin: 5px;
+}
+
+.footer {
+  display:inline-block;
+  max-width: 400px;
+  text-align:center;
+  margin: 20px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 83px;
+  padding-right:83px;
+}
+
+
+.notice {
+  font-size: small;
+  padding: 2px;
+  margin: 5px;
+  width: 320px!important;
+}
+
+
+a {
+  color: #673AB7;
+}

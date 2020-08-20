@@ -1,0 +1,110 @@
+<h1 class="mat-display-1 logo-text text-center">𝙲𝚊𝚕𝚘𝚛𝚒𝚗𝚎𝚜 𝙰𝚠𝚊𝚛𝚎𝚗𝚎𝚜𝚜</h1>
+<div class="text-center">
+  <h3>Sign In to Calories Awareness</h3>
+
+  <div class="d-flex justify-content-center">
+    <p *ngFor="let alert of authService.alerts">
+      <ngb-alert [type]="alert.type" (close)="authService.close(alert)">
+        {{ alert.message }}
+      </ngb-alert>
+    </p>
+  </div>
+
+  <mat-card class="card-content">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        type="text"
+        class="formControl"
+        placeholder="Email Address"
+        #userEmail
+        required
+      />
+      <mat-icon matSuffix> email</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        class="formControl"
+        placeholder="Password"
+        #userPassword
+        required
+      />
+      <mat-icon matSuffix (click)="hide = !hide">
+        {{ hide ? "visibility_off" : "visibility" }}</mat-icon
+      >
+      <mat-hint
+        ><button
+          mat-button
+          class="forgot-pass"
+          color="primary"
+          routerLink="/forgot-password"
+        >
+          Forgot Password?
+        </button></mat-hint
+      >
+    </mat-form-field>
+    <br />
+    <br />
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      value="Log in"
+      (click)="authService.signIn(userEmail.value, userPassword.value)"
+    >
+      Sign in
+    </button>
+
+    <br />
+
+    <button
+      mat-raised-button
+      style="
+      padding-top: 0.2rem;
+      padding-bottom: 0.2rem;
+      padding-left: 0;
+      "
+      (click)="authService.googleAuth()"
+    >
+      <mat-icon
+      style="
+        position:relative;
+        left: -3%;
+        width: 50px;
+        height: 30px;
+        padding-right: 0px;
+        padding-left: 0px;
+        margin-bottom: 8px;
+        margin-left: 0px;
+        margin-right: 0px;
+        "
+      svgIcon="Google-logo"
+      ></mat-icon>
+      Sign in With Google
+    </button>
+
+    <br />
+  </mat-card>
+  <br />
+
+  <mat-card class="footer">
+    <span
+      >New To Calories Awareness?
+      <a mat-button color="primary" routerLink="/register-user">
+        Create an account</a
+      >
+    </span>
+  </mat-card>
+</div>
+<br><br><br><br>
+<div class="text-center">
+  <button mat-button color="primary" href="http://">Terms</button>
+  <button mat-button color="primary" href="http://">Privacy</button>
+  <button mat-button color="primary" href="http://">Security</button>
+  <button mat-button color="primary" href="http://">Contact Us</button>
+</div>

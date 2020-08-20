@@ -1,0 +1,61 @@
+<form [formGroup]="itemForm" (submit)="onSubmit()">
+  <div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Calories</mat-label>
+        <input
+          matInput
+          formControlName="caloriesIntake"
+          placeholder="Ex. 200"
+          value=""
+          required
+        />
+        <mat-error *ngIf="caloriesIntake.invalid">
+          {{ getCaloriesError() }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Choose an meal type</mat-label>
+        <mat-select
+          formControlName="mealType"
+          #selectedOptions
+          panelClass="blue-dropdown"
+          placeholder="meal type?"
+        >
+          <mat-option value="Breakfast">Breakfast</mat-option>
+          <mat-option value="Lunch">Lunch</mat-option>
+          <mat-option value="Dinner">Dinner</mat-option>
+          <mat-option value="Snacks">Snacks</mat-option>
+          <mat-option value="Drinks">Drinks</mat-option>
+        </mat-select>
+        <!-- error message for validation -->
+        <mat-error *ngIf="mealType.invalid">
+          {{ getOptionError() }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div >
+      <mat-form-field appearance="fill" class="date-field">
+        <mat-label>Choose a date</mat-label>
+        <input
+        matInput
+        formControlName="dateSelected"
+        [matDatepicker]="picker1"
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker1"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+        <mat-error *ngIf="caloriesIntake.invalid">
+          {{ getDateError() }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <button type="submit" mat-raised-button color="primary">
+    ADD
+  </button>
+</form>

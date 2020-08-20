@@ -1,0 +1,72 @@
+<h3>Coffee Order:</h3>
+<form [formGroup]="itemForm">
+
+
+  <input
+    placeholder="Customer Name"
+    formControlName="customerName"
+    type="text"
+    class="input-field col s12"
+    required
+  />
+  <div
+    *ngIf="customerName.invalid && (customerName.dirty || customerName.touched)"
+    class="red-text"
+  >
+    <div *ngIf="customerName.errors.required">
+      Name is required.
+    </div>
+    <div *ngIf="customerName.errors.minlength">
+      Name must be at least 2 characters long.
+    </div>
+  </div>
+
+
+
+  <input
+    class="input-field col s12"
+    placeholder="Order Number"
+    formControlName="orderNumber"
+    type="number"
+  />
+  <div
+    *ngIf="orderNumber.invalid && (orderNumber.dirty || orderNumber.touched)"
+    class="red-text"
+  >
+    <div *ngIf="orderNumber.errors.required">
+      Order Number is required.
+    </div>
+    <div *ngIf="orderNumber.errors.minlength">
+      Order Number must be between 0-99999.
+    </div>
+  </div>
+
+  <button
+    class="waves-effect waves-light btn col s4"
+    *ngFor="let coffee of coffees"
+    (click)="addCoffee(coffee)"
+  >
+    {{ coffee }}
+  </button>
+
+
+
+  <ul class="collection">
+    <li *ngFor="let coffee of coffeeOrder">
+      <!-- show selected item -->
+      <span class="col s11"> {{ coffee }} </span>
+      <!-- delete button -->
+      <a class="col s1" (click)="removeCoffee(coffee)">x</a>
+    </li>
+  </ul>
+
+
+  <button
+  [disabled]="itemForm.invalid"
+  class="waves-effect waves-light btn col s12" (click)="onSubmit()">
+    Submit
+  </button>
+
+
+
+</form>

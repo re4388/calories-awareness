@@ -1,0 +1,24 @@
+<div class="confirm-result">
+  <div *ngIf="data.msg === 'registered'">
+    <mat-dialog-content class="mat-typography">
+        This email is already subscribed
+    </mat-dialog-content>
+    <button mat-raised-button color="accent"
+    [mat-dialog-close]="true">
+      OK
+    </button>
+  </div>
+  <div *ngIf="data.msg === 'newUser'">
+    <mat-dialog-content class="mat-typography">
+      <h1>Awesome!</h1>
+        Welcome roll-in Our Daily Subscription List!
+    </mat-dialog-content>
+    <button mat-raised-button color="primary"
+    [mat-dialog-close]="true">
+      OK
+    </button>
+  </div>
+</div>
+
+<!-- welcome -->
+<!-- registered -->

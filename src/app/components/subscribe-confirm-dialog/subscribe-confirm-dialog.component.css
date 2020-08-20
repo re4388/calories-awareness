@@ -1,0 +1,12 @@
+.confirm-result {
+  text-align: center;
+}
+
+.mat-raised-button {
+  margin: 10px;
+  width: 200px;
+}
+
+.mat-dialog-content {
+  padding: 20px;
+}

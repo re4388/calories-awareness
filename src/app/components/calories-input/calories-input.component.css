@@ -1,0 +1,16 @@
+.input-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.mat-raised-button {
+  width: 200px;
+  /* padding: 20px; */
+  margin: 10px;
+}
+
+.date-field {
+  /* text-align: center; */
+  width: 200px;
+  /* padding: 20px; */
+  margin: 10px;
+}
