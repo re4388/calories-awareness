@@ -1,0 +1,24 @@
+<div class="confirm-result">
+  <div *ngIf="data.msg === 'alreadyUnsubscribe'">
+    <mat-dialog-content class="mat-typography">
+        You are already Unsubscribe
+    </mat-dialog-content>
+    <button mat-raised-button color="accent"
+    [mat-dialog-close]="true"
+    (click)="backToDashboard()"
+    >
+      OK
+    </button>
+  </div>
+  <div *ngIf="data.msg === 'complete'">
+    <mat-dialog-content class="mat-typography">
+      <h1>Complete</h1>
+        You will not receive the daily mail
+    </mat-dialog-content>
+    <button mat-raised-button color="primary"
+    [mat-dialog-close]="true"
+    (click)="backToDashboard()">
+      OK
+    </button>
+  </div>
+</div>

@@ -11,8 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 /* component for coffee order */
-import { ItemsComponent } from './items/items.component';
-import { ItemListComponent } from './item-list/item-list.component';
 
 /* material  */
 import { MatSelectModule } from '@angular/material/select';
@@ -74,12 +72,12 @@ import { environment } from 'src/environments/environment';
 import { SubscribeDialogComponent } from './components/subscribe-dialog/subscribe-dialog.component';
 import { SubscribeConfirmDialogComponent } from './components/subscribe-confirm-dialog/subscribe-confirm-dialog.component';
 import { DownloadMyRecordsComponent } from './components/download-my-records/download-my-records.component';
+import { UnsubscribeComponent } from './components/unsubscribe/unsubscribe.component';
+import { UnsubscribeConfirmDialogComponent } from './components/unsubscribe-confirm-dialog/unsubscribe-confirm-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ItemsComponent,
-    ItemListComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
     SignUpComponent,
@@ -91,6 +89,8 @@ import { DownloadMyRecordsComponent } from './components/download-my-records/dow
     SubscribeDialogComponent,
     SubscribeConfirmDialogComponent,
     DownloadMyRecordsComponent,
+    UnsubscribeComponent,
+    UnsubscribeConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,

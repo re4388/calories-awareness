@@ -63,7 +63,7 @@ export class SubscribeDialogComponent implements OnInit {
     });
   }
 
-openDialog(msgType: string): void {
+  openDialog(msgType: string): void {
     this.dialog.open(SubscribeConfirmDialogComponent, {
       data: {
         msg: msgType,
@@ -71,5 +71,5 @@ openDialog(msgType: string): void {
     });
   }
 
-ngOnInit(): void {}
+  ngOnInit(): void {}
 }

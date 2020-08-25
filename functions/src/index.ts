@@ -17,14 +17,24 @@ sgMail.setApiKey(API_KEY);
 export const newSubscriber = functions.firestore
   .document('subscribeUsers/{subscribeUsersId}')
   .onCreate(async (change, context) => {
+
+    const userSnapshots = await admin
+      .firestore()
+      .collection(`userSummary`)
+      .get();
+    const displayName = userSnapshots.docs.map(
+      (snap) => snap.data().displayName
+    );
+
     const msg = {
       to: change.data().email,
       from: 're4388@muenai.com',
       templateId: TEMPLATE_ID,
       dynamic_template_data: {
         subject: `Welcome to join our Daily Reminder`,
-        // name: post.displayName,
-        text: `Welcome to join our Daily Reminder`,
+        name: displayName,
+        text: `do you record your diet today?
+                Do it and keep fit!`,
       },
     };
     // Send it
@@ -48,11 +58,8 @@ export const weeklySummary = functions.pubsub
   .schedule('every friday 17:30')
   .timeZone('Asia/Taipei')
   .onRun(async (context) => {
-    const collection = `userSummary`;
-
     const userSnapshots = await admin.firestore()
-      .collection(collection).get();
-
+      .collection(`userSummary`).get();
     const emails = userSnapshots.docs.map((snap) => snap.data().email);
 
     // TODO get summary data for below mail sending
@@ -105,7 +112,7 @@ export const dailyNotice = functions.pubsub
 
 
 
-  
+
 /* Below code are reference code */
 
 
