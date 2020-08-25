@@ -23,9 +23,12 @@ const routes: Routes = [
     component: ForgotPasswordComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'verify-email-address', component: VerifyEmailComponent },
   {
-    path: 'unsubscribe',
+    path: 'verify-email-address',
+    component: VerifyEmailComponent
+  },
+  {
+    path: 'un-subscribe',
     component: UnsubscribeComponent,
     canActivate: [AuthGuard],
   },

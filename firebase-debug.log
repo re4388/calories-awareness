@@ -1,0 +1,16 @@
+[debug] [2020-08-25T09:13:12.803Z] ----------------------------------------------------------------------
+[debug] [2020-08-25T09:13:12.805Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Ling-Hao Lin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2020-08-25T09:13:12.805Z] CLI Version:   8.7.0
+[debug] [2020-08-25T09:13:12.805Z] Platform:      win32
+[debug] [2020-08-25T09:13:12.805Z] Node Version:  v12.18.1
+[debug] [2020-08-25T09:13:12.806Z] Time:          Tue Aug 25 2020 17:13:12 GMT+0800 (GMT+08:00)
+[debug] [2020-08-25T09:13:12.806Z] ----------------------------------------------------------------------
+[debug] [2020-08-25T09:13:12.806Z] 
+[debug] [2020-08-25T09:13:12.812Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-08-25T09:13:12.812Z] > authorizing via signed-in user
+[debug] [2020-08-25T09:13:12.812Z] [iam] checking project code-train-2ba48 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-08-25T09:13:12.814Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/code-train-2ba48:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2020-08-25T09:13:13.622Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 25 Aug 2020 09:13:12 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=765","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-25T09:13:13.623Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/code-train-2ba48/serviceAccounts/code-train-2ba48@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}

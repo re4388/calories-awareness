@@ -18,13 +18,18 @@ export const newSubscriber = functions.firestore
   .document('subscribeUsers/{subscribeUsersId}')
   .onCreate(async (change, context) => {
 
-    const userSnapshots = await admin
-      .firestore()
-      .collection(`userSummary`)
-      .get();
-    const displayName = userSnapshots.docs.map(
-      (snap) => snap.data().displayName
-    );
+    // const userSnapshots = await admin
+    //   .firestore()
+    //   .collection(`subscribeUsers`)
+    //   .get();
+
+
+    // let displayName = ''
+
+    // userSnapshots.docs.map(
+    //   (snap) => displayName = snap.data().displayName
+    // );
+
 
     const msg = {
       to: change.data().email,
@@ -32,9 +37,8 @@ export const newSubscriber = functions.firestore
       templateId: TEMPLATE_ID,
       dynamic_template_data: {
         subject: `Welcome to join our Daily Reminder`,
-        name: displayName,
-        text: `do you record your diet today?
-                Do it and keep fit!`,
+        // name: displayName,
+        text: `do you record your diet today? Do it and keep fit!`,
       },
     };
     // Send it
