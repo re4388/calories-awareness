@@ -37,7 +37,7 @@ export class CaloriesService0 {
     const localUser = JSON.parse(localStorage.getItem('user'));
     // console.log(`localUser.uid`, localUser.uid);
     // https:stackoverflow.com/questions/53524187/query-firestore-database-on-timestamp-field
-    const days = 20;
+    const days = 10;
     const twentyDaysAgoInMs = Date.now() - days * 60 * 60 * 24 * 1000;
     const twentyDaysAgoInMsDate = new Date(twentyDaysAgoInMs);
     return this.angularFirestore
