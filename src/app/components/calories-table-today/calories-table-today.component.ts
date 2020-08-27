@@ -16,13 +16,28 @@ export interface CaloriesData {
   templateUrl: './calories-table-today.component.html',
   styleUrls: ['./calories-table-today.component.css'],
 })
-export class CaloriesTableTodayComponent implements OnInit {
-  displayedColumns: string[] = ['Calories', 'MealType', 'dateSelected'];
+export class CaloriesTableTodayComponent implements OnInit, AfterViewInit {
+  displayedColumns: string[] = ['MealType', 'dateSelected', 'Calories'];
   dataSourceToday = new MatTableDataSource<any>();
   constructor(private caloriesService: CaloriesService0) {}
+  totalCalories = 0;
 
   ngOnInit(): void {
     this.getRows();
+  }
+
+  ngAfterViewInit(): void {
+    console.log(`afterViewInit`);
+  }
+
+  getTotalCalories(): void {
+    this.dataSourceToday.data.map((ele) => {
+      // console.log('recalculate total');
+      // this.totalCalories = 0;
+      console.log(ele.payload.doc.data().caloriesIntake);
+      this.totalCalories += +ele.payload.doc.data().caloriesIntake;
+      // console.log('recalculate total is done');
+    });
   }
 
   convertTimestampToDate(timestamp: Timestamp | any): Date | any {
@@ -32,13 +47,14 @@ export class CaloriesTableTodayComponent implements OnInit {
   }
 
   getRows(): void {
-    this.caloriesService.getDataByDays(1).subscribe((res) => {
+    this.caloriesService.getDataByDays(0).subscribe((res) => {
       console.log(res);
-      const currentDate = new Date();
-      const date = currentDate.getDate();
-      console.log(date);
       this.dataSourceToday.data = res;
+
+      this.getTotalCalories();
     });
+
+
   }
 
   deleteRow(data): void {

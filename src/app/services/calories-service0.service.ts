@@ -36,23 +36,32 @@ export class CaloriesService0 {
     const localUser = JSON.parse(localStorage.getItem('user'));
     // console.log(`localUser.uid`, localUser.uid);
     // https:stackoverflow.com/questions/53524187/query-firestore-database-on-timestamp-field
-    const hours = new Date().getHours();
-    const minutes = new Date().getMinutes();
-    const seconds = new Date().getSeconds();
-    const milliseconds = new Date().getMilliseconds();
-    const offset =
-      hours * 60 * 60 * 1000 + minutes * 60 * 1000 + seconds * 1000 + milliseconds;
-    const DaysAgoInMs = Date.now() - numberOfDay * 60 * 60 * 24 * 1000 + offset;
+    const hrOffset = new Date().getHours() * 60 * 60 * 1000;
+    const minOffset = new Date().getMinutes() * 60 * 1000;
+    const secOffset = new Date().getSeconds() * 1000;
+    const ms = new Date().getMilliseconds();
+    const offset = hrOffset + minOffset + secOffset + ms;
+
+    const DaysAgoInMs = Date.now() - numberOfDay * 60 * 60 * 24 * 1000 - offset;
+    // console.log(DaysAgoInMs);
     const DaysAgoInMsDate = new Date(DaysAgoInMs);
+    // console.log(DaysAgoInMsDate);
     return this.angularFirestore
       .collection(this.firebaseCollection, (ref) =>
         // userUid in document field need match to localStorage uid
         ref
           .where('userUid', '==', localUser.uid)
-          .where('dateSelected', '>', DaysAgoInMsDate)
-          .orderBy('dateSelected', 'desc')
+          .orderBy('createdAt', 'desc')
+          .where('createdAt', '>', DaysAgoInMsDate)
       )
       .snapshotChanges();
+      // .pipe(
+      //   // tap((e) => console.log(e)),
+      //   // https://www.learnrxjs.io/learn-rxjs/operators/filtering/take
+      //   // When you are interested in only the first emission,
+      //   // you want to use take
+      //   take(1)
+      // );
   }
 
   /* get all data for download as csv functionality*/

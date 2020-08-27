@@ -3,12 +3,6 @@
     [dataSource]="dataSourceToday"
     >
 
-    <ng-container matColumnDef="Calories">
-      <mat-header-cell  *matHeaderCellDef > Calories </mat-header-cell>
-      <mat-cell mat-cell *matCellDef="let dataSource">
-        {{ dataSource.payload.doc.data().caloriesIntake }}
-      </mat-cell>
-    </ng-container>
 
 
 
@@ -17,7 +11,9 @@
       <mat-cell mat-cell *matCellDef="let dataSource">
         {{ dataSource.payload.doc.data().mealType }}
       </mat-cell>
+      <mat-footer-cell *matFooterCellDef>Total</mat-footer-cell>
     </ng-container>
+
 
     <ng-container matColumnDef="dateSelected">
       <mat-header-cell
@@ -26,22 +22,35 @@
       >
       Date
       </mat-header-cell>
-
       <mat-cell *matCellDef="let dataSource">
-        {{ convertTimestampToDate(dataSource.payload.doc
-          .data().dateSelected) | date }}
+        {{ convertTimestampToDate(dataSource.payload.doc.data().dateSelected) | date }}
 
-        <span
-          (click)="deleteRow(dataSource)"
-        >
-          <i class="material-icons">delete_outline</i>
-        </span>
+
       </mat-cell>
-
+      <mat-footer-cell *matFooterCellDef> </mat-footer-cell>
     </ng-container>
+
+
+        <ng-container matColumnDef="Calories">
+      <mat-header-cell  *matHeaderCellDef > Calories </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let dataSource">
+        {{ dataSource.payload.doc.data().caloriesIntake }}
+
+        <span (click)="deleteRow(dataSource)">
+        <i class="material-icons">delete_outline</i>
+        </span>
+
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef> {{ totalCalories }}</mat-footer-cell>
+    </ng-container>
+
+
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-footer-row *matFooterRowDef="displayedColumns"></mat-footer-row>
   </mat-table>
 
-</div>
 
+
+</div>

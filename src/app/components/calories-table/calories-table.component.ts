@@ -21,7 +21,7 @@ export interface CaloriesData {
   styleUrls: ['./calories-table.component.css'],
 })
 export class CaloriesTableComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['Calories', 'MealType', 'dateSelected'];
+  displayedColumns: string[] = ['MealType', 'dateSelected', 'Calories'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   dataSource = new MatTableDataSource<any>();
