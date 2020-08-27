@@ -7,6 +7,7 @@
     "build": "ng build --prod --aot",
     "build_no_aot": "ng build",
     "deploy": "firebase deploy",
+    "build_and_deploy": "ng build --prod --aot && firebase deploy",
     "deploy_host": "firebase serve --only hosting",
     "cloud_deploy": "firebase deploy --only functions",
     "cloud_deploy_1": "firebase deploy --only functions:batchUpdate",
