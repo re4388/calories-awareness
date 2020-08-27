@@ -31,9 +31,9 @@ export class CaloriesTableTodayComponent implements OnInit, AfterViewInit {
   }
 
   getTotalCalories(): void {
+    this.totalCalories = 0;
     this.dataSourceToday.data.map((ele) => {
       // console.log('recalculate total');
-      // this.totalCalories = 0;
       console.log(ele.payload.doc.data().caloriesIntake);
       this.totalCalories += +ele.payload.doc.data().caloriesIntake;
       // console.log('recalculate total is done');
