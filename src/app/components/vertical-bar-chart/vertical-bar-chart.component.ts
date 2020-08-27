@@ -51,7 +51,7 @@ export class VerticalBarChartComponent implements OnInit {
   getData(): void {
     const firebaseData = [];
 
-    this.caloriesService.getChartData().subscribe((res) => {
+    this.caloriesService.getDataByDays(10).subscribe((res) => {
       this.dataSource = res;
       // console.log(this.dataSource);
       this.dataSource.forEach((element) => {

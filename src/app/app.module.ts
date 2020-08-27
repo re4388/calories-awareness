@@ -74,6 +74,7 @@ import { SubscribeConfirmDialogComponent } from './components/subscribe-confirm-
 import { DownloadMyRecordsComponent } from './components/download-my-records/download-my-records.component';
 import { UnsubscribeComponent } from './components/unsubscribe/unsubscribe.component';
 import { UnsubscribeConfirmDialogComponent } from './components/unsubscribe-confirm-dialog/unsubscribe-confirm-dialog.component';
+import { CaloriesTableTodayComponent } from './components/calories-table-today/calories-table-today.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { UnsubscribeConfirmDialogComponent } from './components/unsubscribe-conf
     DownloadMyRecordsComponent,
     UnsubscribeComponent,
     UnsubscribeConfirmDialogComponent,
+    CaloriesTableTodayComponent,
   ],
   imports: [
     BrowserModule,
