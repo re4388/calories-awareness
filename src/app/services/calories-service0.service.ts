@@ -33,6 +33,7 @@ export class CaloriesService0 {
   }
 
   getDataByDays(numberOfDay: number) {
+    // console.log(await this.angularFireAuth.currentUser);
     const localUser = JSON.parse(localStorage.getItem('user'));
     // console.log(`localUser.uid`, localUser.uid);
     // https:stackoverflow.com/questions/53524187/query-firestore-database-on-timestamp-field
@@ -59,13 +60,13 @@ export class CaloriesService0 {
           .where('dateSelected', '>=', daysAgoInDate)
       )
       .snapshotChanges();
-      // .pipe(
-      //   // tap((e) => console.log(e)),
-      //   // https://www.learnrxjs.io/learn-rxjs/operators/filtering/take
-      //   // When you are interested in only the first emission,
-      //   // you want to use take
-      //   take(1)
-      // );
+    // .pipe(
+    //   // tap((e) => console.log(e)),
+    //   // https://www.learnrxjs.io/learn-rxjs/operators/filtering/take
+    //   // When you are interested in only the first emission,
+    //   // you want to use take
+    //   take(1)
+    // );
   }
 
   /* get all data for download as csv functionality*/

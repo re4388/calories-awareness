@@ -33,12 +33,10 @@ export class CaloriesInputComponent implements OnInit {
         ],
       }),
       mealType: this.fb.control('', {
-        validators: [
-          Validators.required ],
+        validators: [ Validators.required ],
       }),
       dateSelected: this.fb.control('', {
-        validators: [
-          Validators.required ],
+        validators: [ Validators.required ],
       }),
 
     });
@@ -86,24 +84,25 @@ export class CaloriesInputComponent implements OnInit {
     switch (this.itemForm.status) {
       case 'VALID':
         const data = this.itemForm.value;
-        console.log('before send', data);
+        // console.log('before send', data);
 
         // add to firebase store
         this.caloriesService.addtoCalories(data).then((response) => {
-          console.log(`addRow response`, response);
-          console.log('Order Submit to db');
+          // console.log(`addRow response`, response);
+          // console.log('Order Submit to db');
+          // this.itemForm.reset(this.data);
         });
-        this.itemForm.reset(this.data);
         break;
       case 'INVALID':
-        alert(' 表單驗證失敗，無法送出表單！');
+        console.log(' 表單驗證失敗，無法送出表單！');
         break;
       case 'PENDING':
-        alert(' 表單驗證進行中，請稍後再試...');
+        console.log(' 表單驗證進行中，請稍後再試...');
         break;
       case 'DISABLED':
         break;
     }
-    this.itemForm.reset();
+    // this.itemForm.reset();
+    this.itemForm.reset(this.data);
   }
 }

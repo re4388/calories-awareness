@@ -24,6 +24,8 @@ export class CaloriesTableTodayComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRows();
+    console.log(`qq`);
+
   }
 
   // ngAfterViewInit(): void {
@@ -50,7 +52,6 @@ export class CaloriesTableTodayComponent implements OnInit {
     this.caloriesService.getDataByDays(0).subscribe((res) => {
       // console.log(res);
       this.dataSourceToday.data = res;
-
       this.getTotalCalories();
     });
 
