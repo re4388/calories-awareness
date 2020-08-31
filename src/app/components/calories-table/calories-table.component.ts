@@ -20,7 +20,7 @@ export interface CaloriesData {
   templateUrl: './calories-table.component.html',
   styleUrls: ['./calories-table.component.css'],
 })
-export class CaloriesTableComponent implements OnInit, AfterViewInit {
+export class CaloriesTableComponent implements OnInit {
   displayedColumns: string[] = ['MealType', 'dateSelected', 'Calories'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
@@ -43,9 +43,9 @@ export class CaloriesTableComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  ngAfterViewInit(): void {
-    console.log(`afterViewInit`);
-  }
+  // ngAfterViewInit(): void {
+  //   console.log(`afterViewInit`);
+  // }
 
   sortByDateSelected(sortInfo): void {
     this.currentSort = sortInfo;

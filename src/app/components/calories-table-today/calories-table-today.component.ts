@@ -16,7 +16,7 @@ export interface CaloriesData {
   templateUrl: './calories-table-today.component.html',
   styleUrls: ['./calories-table-today.component.css'],
 })
-export class CaloriesTableTodayComponent implements OnInit, AfterViewInit {
+export class CaloriesTableTodayComponent implements OnInit {
   displayedColumns: string[] = ['MealType', 'dateSelected', 'Calories'];
   dataSourceToday = new MatTableDataSource<any>();
   constructor(private caloriesService: CaloriesService0) {}
@@ -26,15 +26,15 @@ export class CaloriesTableTodayComponent implements OnInit, AfterViewInit {
     this.getRows();
   }
 
-  ngAfterViewInit(): void {
-    console.log(`afterViewInit`);
-  }
+  // ngAfterViewInit(): void {
+    // console.log(`afterViewInit`);
+  // }
 
   getTotalCalories(): void {
     this.totalCalories = 0;
     this.dataSourceToday.data.map((ele) => {
       // console.log('recalculate total');
-      console.log(ele.payload.doc.data().caloriesIntake);
+      // console.log(ele.payload.doc.data().caloriesIntake);
       this.totalCalories += +ele.payload.doc.data().caloriesIntake;
       // console.log('recalculate total is done');
     });
@@ -48,7 +48,7 @@ export class CaloriesTableTodayComponent implements OnInit, AfterViewInit {
 
   getRows(): void {
     this.caloriesService.getDataByDays(0).subscribe((res) => {
-      console.log(res);
+      // console.log(res);
       this.dataSourceToday.data = res;
 
       this.getTotalCalories();

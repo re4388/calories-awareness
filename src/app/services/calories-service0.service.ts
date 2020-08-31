@@ -37,6 +37,8 @@ export class CaloriesService0 {
     // console.log(`localUser.uid`, localUser.uid);
     // https:stackoverflow.com/questions/53524187/query-firestore-database-on-timestamp-field
     const hrOffset = new Date().getHours() * 60 * 60 * 1000;
+    // console.log(new Date().getHours());
+    // console.log(Date.now());
     const minOffset = new Date().getMinutes() * 60 * 1000;
     const secOffset = new Date().getSeconds() * 1000;
     const ms = new Date().getMilliseconds();
@@ -44,15 +46,17 @@ export class CaloriesService0 {
 
     const DaysAgoInMs = Date.now() - numberOfDay * 60 * 60 * 24 * 1000 - offset;
     // console.log(DaysAgoInMs);
-    const DaysAgoInMsDate = new Date(DaysAgoInMs);
+    const daysAgoInDate = new Date(DaysAgoInMs);
+    // console.log(daysAgoInDate);
+
     // console.log(DaysAgoInMsDate);
     return this.angularFirestore
       .collection(this.firebaseCollection, (ref) =>
         // userUid in document field need match to localStorage uid
         ref
           .where('userUid', '==', localUser.uid)
-          .orderBy('createdAt', 'desc')
-          .where('createdAt', '>', DaysAgoInMsDate)
+          .orderBy('dateSelected', 'desc')
+          .where('dateSelected', '>=', daysAgoInDate)
       )
       .snapshotChanges();
       // .pipe(

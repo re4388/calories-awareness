@@ -3,13 +3,10 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { CaloriesService0 } from '../../services/calories-service0.service';
 import { TimestampConverter } from '../../helper/timestamp-converter';
 
-
-
 interface ChartData {
   name: string;
   value: number;
 }
-
 
 @Component({
   selector: 'app-vertical-bar-chart',
@@ -68,9 +65,9 @@ export class VerticalBarChartComponent implements OnInit {
         tmp[value] = Number(element.payload.doc.data().caloriesIntake);
         firebaseData.push(tmp);
       });
-      console.log(firebaseData);
+      // console.log(firebaseData);
       this.firebaseDataMerged = this.mergeDate(firebaseData).reverse();
-      console.log(this.firebaseDataMerged);
+      // console.log(this.firebaseDataMerged);
     });
   }
 
