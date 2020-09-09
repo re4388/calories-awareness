@@ -5,7 +5,12 @@
   padding-top: 60px;
 }
 
-
+.fake-link {
+    color: #3F51C6;
+    text-decoration: underline;
+    cursor: pointer;
+    text-decoration:none;
+}
 
 /* Add a black background color to the top navigation */
 .topnav {

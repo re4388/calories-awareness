@@ -6,6 +6,13 @@ html {
   padding-top: 40px;
 }
 
+.fake-link {
+    color: #3F51C6;
+    text-decoration: underline;
+    cursor: pointer;
+    text-decoration:none;
+}
+
 
 
 .text-center {

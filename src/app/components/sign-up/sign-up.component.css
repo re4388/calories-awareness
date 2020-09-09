@@ -7,6 +7,13 @@ html {
 }
 
 
+.fake-link {
+    color:  #3F51C6;
+    text-decoration: underline;
+    cursor: pointer;
+    text-decoration:none;
+}
+
 .text-center {
   text-align: center;
 }
