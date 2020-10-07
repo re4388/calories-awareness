@@ -20,7 +20,6 @@ import { Alert } from '../models/alert';
   providedIn: 'root',
 })
 export class AuthService {
-
   constructor(
     private angularFireAuth: AngularFireAuth,
     public angularFirestore: AngularFirestore,
@@ -39,7 +38,6 @@ export class AuthService {
     });
   }
 
-
   infos: Alert[];
   INFOS: Alert[] = [
     {
@@ -57,7 +55,7 @@ export class AuthService {
 
   userData: any;
 
-  close(alert): void {
+  close(alert: Alert): void {
     this.alerts.splice(this.alerts.indexOf(alert), 1);
   }
 
@@ -65,11 +63,11 @@ export class AuthService {
     this.infos = Array.from(this.INFOS);
   }
 
-  closeInfo(info): void {
+  closeInfo(info: Alert): void {
     this.infos.splice(this.infos.indexOf(info), 1);
   }
 
-  raiseWarning(msg): void {
+  raiseWarning(msg: string): void {
     if (msg !== null) {
       this.ALERTS[0].message = msg;
     }
@@ -77,7 +75,7 @@ export class AuthService {
   }
 
   // Sign in with email/password
-  async signIn(email: string, password: string) {
+  async signIn(email: string, password: string): Promise<void> {
     return await this.angularFireAuth
       .signInWithEmailAndPassword(email, password)
       .then(async (result) => {
@@ -94,7 +92,7 @@ export class AuthService {
   }
 
   // Sign up with email/password
-  signUp(email: string, password: string) {
+  signUp(email: string, password: string): Promise<void> {
     return this.angularFireAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
@@ -109,7 +107,7 @@ export class AuthService {
   }
 
   /* update user data */
-  updateFirebaseUser(user) {
+  updateFirebaseUser(user: firebase.User): Promise<void> {
     // get firebase store user reference via user uid
     const userRef: AngularFirestoreDocument<any> = this.angularFirestore.doc(
       `users/${user.uid}`
@@ -136,40 +134,38 @@ export class AuthService {
   }
 
   // Sign in with Google
-  googleAuth() {
+  googleAuth(): Promise<void> {
     return this.authLogin(new auth.GoogleAuthProvider());
   }
 
   // Sign in with Facebook
-  facebookAuth() {
+  facebookAuth(): Promise<void> {
     return this.authLogin(new auth.FacebookAuthProvider());
   }
 
   // Auth logic to run auth providers
-  authLogin(provider) {
-    return this.angularFireAuth
-      .signInWithPopup(provider)
-      .then((result) => {
-        this.ngZone.run(() => {
-          this.updateFirebaseUser(result.user);
-          this.router.navigate(['dashboard']);
-        });
-      })
-      .catch((error) => {
-        this.raiseWarning(error.message);
+  async authLogin(provider: auth.AuthProvider): Promise<void> {
+    try {
+      const result = await this.angularFireAuth
+        .signInWithPopup(provider);
+      this.ngZone.run(() => {
+        this.updateFirebaseUser(result.user);
+        this.router.navigate(['dashboard']);
       });
+    } catch (error) {
+      this.raiseWarning(error.message);
+    }
   }
 
   // Sign out
-  signOut() {
-    return this.angularFireAuth.signOut().then(() => {
-      localStorage.removeItem('user');
-      this.router.navigate(['sign-in']);
-    });
+  async signOut(): Promise<void> {
+    await this.angularFireAuth.signOut();
+    localStorage.removeItem('user');
+    this.router.navigate(['sign-in']);
   }
 
   // Reset Forggot password
-  ForgotPassword(passwordResetEmail) {
+  ForgotPassword(passwordResetEmail): Promise<void> {
     return this.angularFireAuth
       .sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
@@ -177,13 +173,13 @@ export class AuthService {
         // window.alert('Password reset email sent, check your inbox.');
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
         this.raiseWarning(error.message);
       });
   }
 
   // Send email verfificaiton when new user sign up
-  async SendVerificationMail() {
+  async SendVerificationMail(): Promise<void> {
     return (await this.angularFireAuth.currentUser)
       .sendEmailVerification()
       .then(() => {
@@ -192,9 +188,10 @@ export class AuthService {
   }
 
   /* check if backend update the mail verified field */
-  async isFirebaseVerified() {
+  async isFirebaseVerified(): Promise<void> {
     await (await this.angularFireAuth.currentUser).reload();
-    const isEmailVerified = (await this.angularFireAuth.currentUser).emailVerified;
+    const isEmailVerified = (await this.angularFireAuth.currentUser)
+      .emailVerified;
     if (isEmailVerified) {
       console.log('fireabse Email verified');
     } else {
@@ -204,7 +201,7 @@ export class AuthService {
 
   /* check if local email field verified,
   if not try once to reset localStorage */
-  isLocalstorageVerified() {
+  isLocalstorageVerified(): void {
     const localUser = JSON.parse(localStorage.getItem('user'));
     const isLocalVerified = localUser.emailVerified;
     if (isLocalVerified) {

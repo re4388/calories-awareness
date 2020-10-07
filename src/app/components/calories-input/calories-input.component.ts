@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CaloriesService0 } from '../../services/calories-service0.service';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators,
+  AbstractControl,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-calories-input',
@@ -33,12 +39,11 @@ export class CaloriesInputComponent implements OnInit {
         ],
       }),
       mealType: this.fb.control('', {
-        validators: [ Validators.required ],
+        validators: [Validators.required],
       }),
       dateSelected: this.fb.control('', {
-        validators: [ Validators.required ],
+        validators: [Validators.required],
       }),
-
     });
 
     this.itemForm.setValue(this.data);
@@ -68,15 +73,15 @@ export class CaloriesInputComponent implements OnInit {
     return this.caloriesIntake.hasError('pattern') ? 'number only' : '';
   }
 
-  get caloriesIntake() {
+  get caloriesIntake(): AbstractControl {
     return this.itemForm.get('caloriesIntake');
   }
 
-  get mealType() {
+  get mealType(): AbstractControl {
     return this.itemForm.get('mealType');
   }
 
-  get dateSelected() {
+  get dateSelected(): AbstractControl {
     return this.itemForm.get('dateSelected');
   }
 
@@ -94,10 +99,10 @@ export class CaloriesInputComponent implements OnInit {
         });
         break;
       case 'INVALID':
-        console.log(' 表單驗證失敗，無法送出表單！');
+        console.log('Validate fail');
         break;
       case 'PENDING':
-        console.log(' 表單驗證進行中，請稍後再試...');
+        console.log('Validation in Progress');
         break;
       case 'DISABLED':
         break;

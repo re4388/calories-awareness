@@ -8,13 +8,16 @@
     "declaration": false,
     "downlevelIteration": true,
     "experimentalDecorators": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    // "noImplicitAny": true,
+    // "strictNullChecks": true,
+    // "strictPropertyInitialization": true,
+    "noImplicitThis": true,
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "lib": ["es2018", "dom"]
   }
 }

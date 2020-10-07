@@ -22,7 +22,7 @@ export class UnsubscribeComponent implements OnInit {
     });
   }
 
-  unsubscribeDaily() {
+  unsubscribeDaily(): void {
     const localUser = JSON.parse(localStorage.getItem('user'));
     console.log(localUser.uid);
 

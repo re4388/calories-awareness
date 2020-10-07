@@ -25,11 +25,10 @@ export class CaloriesTableTodayComponent implements OnInit {
   ngOnInit(): void {
     this.getRows();
     console.log(`qq`);
-
   }
 
   // ngAfterViewInit(): void {
-    // console.log(`afterViewInit`);
+  // console.log(`afterViewInit`);
   // }
 
   getTotalCalories(): void {
@@ -42,7 +41,7 @@ export class CaloriesTableTodayComponent implements OnInit {
     });
   }
 
-  convertTimestampToDate(timestamp: Timestamp | any): Date | any {
+  convertTimestampToDate(timestamp: Timestamp): Date {
     return timestamp instanceof Timestamp
       ? new Timestamp(timestamp.seconds, timestamp.nanoseconds).toDate()
       : timestamp;
@@ -54,11 +53,10 @@ export class CaloriesTableTodayComponent implements OnInit {
       this.dataSourceToday.data = res;
       this.getTotalCalories();
     });
-
-
   }
 
   deleteRow(data): void {
+    console.log(data);
     this.caloriesService.deleteRow(data);
   }
 

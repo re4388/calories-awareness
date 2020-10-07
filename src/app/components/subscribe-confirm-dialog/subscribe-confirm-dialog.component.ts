@@ -13,7 +13,6 @@ export interface DialogData {
 export class SubscribeConfirmDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
-  
   ngOnInit(): void {
   }
 

@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+// import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { CaloriesService0 } from '../../services/calories-service0.service';
 import { TimestampConverter } from '../../helper/timestamp-converter';
+// import { chartData } from './FakeData';
 
 interface ChartData {
   name: string;
   value: number;
+}
+
+interface OneChartData {
+  [key: string]: number;
 }
 
 @Component({
@@ -22,7 +27,7 @@ export class VerticalBarChartComponent implements OnInit {
   // view: any[] = [400, 200];
   view: null;
   dataSource;
-  firebaseDataMerged: ChartData[];
+  firebaseDataMerged: ChartData[] = [] as any;
 
   // options
   showXAxis = true;
@@ -41,12 +46,12 @@ export class VerticalBarChartComponent implements OnInit {
   //   domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'],
   // };
 
-  onSelect(event): void {
-    console.log(event);
-  }
+  // onSelect(event): void {
+  //   console.log(event);
+  // }
 
   getData(): void {
-    const firebaseData = [];
+    const firebaseData: ChartData[] = [] as any;
 
     this.caloriesService.getDataByDays(10).subscribe((res) => {
       this.dataSource = res;
@@ -58,7 +63,7 @@ export class VerticalBarChartComponent implements OnInit {
         // console.log(date.getMonth() + 1);
         // console.log(date.getDate());
 
-        const tmp = {};
+        const tmp: ChartData = {} as any;
         const name = 'name';
         const value = 'value';
         tmp[name] = date.getMonth() + 1 + '/' + date.getDate();
@@ -75,20 +80,15 @@ export class VerticalBarChartComponent implements OnInit {
     this.getData();
   }
 
+  mergeDate(inputData: ChartData[]): ChartData[] {
+    const tmpObject = {} as OneChartData;
+    const result: ChartData[] = [];
 
-  mergeDate(inputData): any[] {
-    const tmpObject = {};
-    const tmpCount = {};
-    const result = [];
-
-    inputData.forEach((e) => {
+    inputData.forEach((e: { name: string | number; value: number }) => {
       if (!tmpObject[e.name]) {
         tmpObject[e.name] = 0;
-        tmpCount[e.name] = 0;
       }
-
       tmpObject[e.name] += e.value;
-      tmpCount[e.name]++;
     });
 
     for (const item in tmpObject) {

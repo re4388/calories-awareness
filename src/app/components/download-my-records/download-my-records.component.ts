@@ -71,9 +71,9 @@ export class DownloadMyRecordsComponent implements OnInit {
     });
   }
 
-  async downloadCsv() {
+  async downloadCsv(): Promise<void> {
     const data = this.downloadData;
-    const replacer = (key, value) => (value === null ? '' : value);
+    const replacer = (_, value) => (value === null ? '' : value);
     const header = Object.keys(data[0]);
     const csv = data.map((row) =>
       header

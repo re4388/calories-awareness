@@ -1,10 +1,31 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  DocumentChangeAction,
+} from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable, of, race } from 'rxjs';
+import { Observable, of, OperatorFunction, race } from 'rxjs';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
-import { tap, distinctUntilChanged, takeLast, filter, map, take } from 'rxjs/operators';
+import {
+  tap,
+  distinctUntilChanged,
+  takeLast,
+  filter,
+  map,
+  take,
+} from 'rxjs/operators';
+import { User } from '../models/user';
+
+type DocumentChangeActionReturnType =
+  | Observable<DocumentChangeAction<User>[]>
+  | Observable<DocumentChangeAction<unknown>[]>;
+
+interface SubscribeUsers {
+  createdAt: Date;
+  email: string;
+  userUid: string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +40,7 @@ export class CaloriesService0 {
   subscribeUsersCollection = `subscribeUsers`;
 
   // doc: https://firebase.google.com/docs/firestore/query-data/order-limit-data
-  getAllRows() {
+  getAllRows(): DocumentChangeActionReturnType {
     const localUser = JSON.parse(localStorage.getItem('user'));
     // console.log(`localUser.uid`, localUser.uid);
     return this.angularFirestore
@@ -32,7 +53,7 @@ export class CaloriesService0 {
       .snapshotChanges();
   }
 
-  getDataByDays(numberOfDay: number) {
+  getDataByDays(numberOfDay: number): DocumentChangeActionReturnType {
     // console.log(await this.angularFireAuth.currentUser);
     const localUser = JSON.parse(localStorage.getItem('user'));
     // console.log(`localUser.uid`, localUser.uid);
@@ -70,7 +91,7 @@ export class CaloriesService0 {
   }
 
   /* get all data for download as csv functionality*/
-  getALLData() {
+  getALLData(): DocumentChangeActionReturnType {
     const localUser = JSON.parse(localStorage.getItem('user'));
     // console.log(`localUser.uid`, localUser.uid);
 
@@ -88,7 +109,7 @@ export class CaloriesService0 {
       .snapshotChanges();
   }
 
-  sortBydateSelected() {
+  sortBydateSelected(): DocumentChangeActionReturnType {
     const localUser = JSON.parse(localStorage.getItem('user'));
     // console.log(`localUser.uid`, localUser.uid);
     return this.angularFirestore
@@ -99,7 +120,7 @@ export class CaloriesService0 {
       .snapshotChanges();
   }
 
-  sortByDateSelectedDesc() {
+  sortByDateSelectedDesc(): DocumentChangeActionReturnType {
     const localUser = JSON.parse(localStorage.getItem('user'));
     console.log(`localUser.uid`, localUser.uid);
     return this.angularFirestore
@@ -130,7 +151,7 @@ export class CaloriesService0 {
     );
   }
 
-  async addtoCalories(data) {
+  async addtoCalories(data): Promise<void> {
     console.log(data);
     // record timestamp
     const { serverTimestamp } = firebase.firestore.FieldValue;
@@ -154,7 +175,7 @@ export class CaloriesService0 {
   /*
   for check if this user is subscribed the daily notify
   */
-  isUserSubscribed() {
+  isUserSubscribed(): Observable<SubscribeUsers[]> {
     const localUser = JSON.parse(localStorage.getItem('user'));
     // console.log(`localUser.uid`, localUser.uid);
     return this.angularFirestore
@@ -167,14 +188,14 @@ export class CaloriesService0 {
         // https://www.learnrxjs.io/learn-rxjs/operators/filtering/take
         // When you are interested in only the first emission,
         // you want to use take
-        take(1)
+        take(1) as OperatorFunction<unknown[], SubscribeUsers[]>
       );
   }
 
   /*
   add user to subscribe user collection
   */
-  async addtoSubscribeUsers(data) {
+  async addtoSubscribeUsers(data): Promise<void> {
     // console.log(data);
     // add timestamp field
     const { serverTimestamp } = firebase.firestore.FieldValue;

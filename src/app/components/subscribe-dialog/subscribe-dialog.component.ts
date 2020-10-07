@@ -40,7 +40,7 @@ export class SubscribeDialogComponent implements OnInit {
   }
 
   SubscribeDailyReminder(): void {
-    const mailKey = `email`;
+    const mailKey = 'email';
     const data = { email: this.emailForm.value };
 
     this.caloriesService.isUserSubscribed().subscribe((res) => {
