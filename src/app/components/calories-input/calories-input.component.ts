@@ -62,9 +62,15 @@ export class CaloriesInputComponent implements OnInit {
   }
 
   getCaloriesError(): string | null {
-    if (this.caloriesIntake.hasError('maxlength')) {
+    if (this.caloriesIntake === null) {
+      return null;
+    } else {
       return 'The character must be less than 6';
     }
+
+    // if (this.caloriesIntake.hasError('maxLength')) {
+    //     return 'The character must be less than 6';
+    // }
 
     if (this.caloriesIntake.hasError('required')) {
       return 'You must enter a value';
@@ -73,15 +79,15 @@ export class CaloriesInputComponent implements OnInit {
     return this.caloriesIntake.hasError('pattern') ? 'number only' : '';
   }
 
-  get caloriesIntake(): AbstractControl {
+  get caloriesIntake(): AbstractControl | null {
     return this.itemForm.get('caloriesIntake');
   }
 
-  get mealType(): AbstractControl {
+  get mealType(): AbstractControl | null {
     return this.itemForm.get('mealType');
   }
 
-  get dateSelected(): AbstractControl {
+  get dateSelected(): AbstractControl | null {
     return this.itemForm.get('dateSelected');
   }
 
@@ -92,7 +98,7 @@ export class CaloriesInputComponent implements OnInit {
         // console.log('before send', data);
 
         // add to firebase store
-        this.caloriesService.addtoCalories(data).then((response) => {
+        this.caloriesService.addToCalories(data).then((response) => {
           // console.log(`addRow response`, response);
           // console.log('Order Submit to db');
           // this.itemForm.reset(this.data);

@@ -151,7 +151,7 @@ export class CaloriesService0 {
     );
   }
 
-  async addtoCalories(data): Promise<void> {
+  async addToCalories(data): Promise<void> {
     console.log(data);
     // record timestamp
     const { serverTimestamp } = firebase.firestore.FieldValue;

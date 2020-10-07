@@ -1,28 +1,32 @@
 # CaloriesIntake
 
+## TODO
+
+- [] gradually adopt TS strict mode 20201007
 
 ## Demo site (hosted in Firebase)
+
 [firebase hosting](https://code-train-2ba48.web.app)
 
 ## How to use
+
 - if you want to use this repo as your own one, you will need to add your own environment.ts file, something like below format.
-    ```js
-    export const environment = {
-        production: false,
-        firebaseConfig: {
-          apiKey: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-          authDomain: 'XXXXXXXXXXXXXXXXX.firebaseapp.com',
-          databaseURL: 'https://XXXXXXXXXXXX.firebaseio.com',
-          projectId: 'XXXXXXXXXXXXXXXXX',
-          storageBucket: 'XXXXXXXXXXXXXXXXX.appspot.com',
-          messagingSenderId: 'XXXXXX',
-          appId: '1:XXXX:web:XXXX',
-        },
-      };
-    ```
+  ```js
+  export const environment = {
+    production: false,
+    firebaseConfig: {
+      apiKey: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      authDomain: "XXXXXXXXXXXXXXXXX.firebaseapp.com",
+      databaseURL: "https://XXXXXXXXXXXX.firebaseio.com",
+      projectId: "XXXXXXXXXXXXXXXXX",
+      storageBucket: "XXXXXXXXXXXXXXXXX.appspot.com",
+      messagingSenderId: "XXXXXX",
+      appId: "1:XXXX:web:XXXX",
+    },
+  };
+  ```
 
-
-## Below is original Angular README.md
+## Below is the readme for typical Angular 10 APP on CLI instruction
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.0.
 
